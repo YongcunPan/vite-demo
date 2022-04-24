@@ -1,0 +1,30 @@
+.red {
+  color: red;
+}
+.fengmap {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  box-shadow: 0 0 12px #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  &:focus {
+    outline: none;
+  }
+  canvas {
+    left: 0;
+  }
+  .inner {
+    position: absolute;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(14px);
+    bottom: 0;
+    right: 0;
+    height: 60px;
+    width: 200px;
+    z-index: 10000;
+    border-radius: 12px 0 0 0;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+}
