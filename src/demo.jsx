@@ -4,9 +4,14 @@ import fengmap from "fengmap/build/fengmap.map.min";
 import "fengmap/build/fengmap.analyser.min";
 import "fengmap/build/fengmap.effect.min";
 import "fengmap/build/fengmap.plugin.min";
+import { Hello } from "./tab";
 
 const Demo = () => {
-  return <div className={styles.red}>demo</div>;
+  return (
+    <div className={styles.red}>
+      <Hello />
+    </div>
+  );
 };
 
 export const Demo1 = () => {
