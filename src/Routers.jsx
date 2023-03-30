@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState /* useCallback */ } from "react";
 import {
   Routes,
   Route,
@@ -11,8 +11,8 @@ import zhCN from "./locales/cn.json";
 import enUS from "./locales/en.json";
 import "intl/locale-data/jsonp/en.js";
 import "intl/locale-data/jsonp/zh.js";
-import { useEffect, useState } from "react";
 import { t } from "./utils/functions";
+import ResizeObserver from "rc-resize-observer";
 
 const locales = { "en-US": enUS, "zh-CN": zhCN };
 
@@ -21,6 +21,7 @@ export default function App() {
   const { pathname, state, search } = useLocation();
   const [loading, setLoading] = useState(true);
   const [lang, setLang] = useState("en-US");
+
   useEffect(() => {
     setLoading(true);
     intl
@@ -84,16 +85,40 @@ const CustomComponent = () => {
 };
 
 const Home = () => {
+  const [h, setH] = useState(80);
+
+  const handleHeight = () => {
+    let tempH = h === 80 ? 100 : 80;
+    setH(tempH);
+  };
+
   return (
     <div>
       <div>{t("home")}</div>
-      <a href="/app2">toApp2</a>
+      <div style={{ width: 100, height: 100 }}>
+        <ResizeObserver
+          onResize={(d, e) => console.log(d, e.getBoundingClientRect())}>
+          <div
+            style={{ height: h, backgroundColor: "#999", padding: 10 }}
+            onClick={handleHeight}>
+            todo
+          </div>
+        </ResizeObserver>
+      </div>
     </div>
   );
 };
 
 const About = () => {
-  return <div>{t("about")}</div>;
+  return (
+    <div>
+      <div>{t("about")}</div>
+      <div>
+        <div> xxx</div>
+        <div>todo</div>
+      </div>
+    </div>
+  );
 };
 
 const SlashComponent = ({ pathname }) => {

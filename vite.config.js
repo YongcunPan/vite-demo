@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import qiankun from "vite-plugin-qiankun";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 const useDevMode = true;
@@ -9,12 +10,12 @@ export default ({ mode }) => {
   return defineConfig({
     base: __DEV__ ? "/" : "//localhost:3009",
     plugins: [
-      // react({
-      //   // Exclude storybook stories
-      //   exclude: /\.stories\.(t|j)sx?$/,
-      //   // Only .tsx files
-      //   include: "**/*.tsx",
-      // }),
+      react({
+        // Exclude storybook stories
+        exclude: /\.stories\.(t|j)sx?$/,
+        // Only .tsx files
+        include: "**/*.tsx",
+      }),
       ...(useDevMode ? [] : [reactRefresh()]),
       qiankun("vite-react", {
         // 微应用名字，与主应用注册的微应用名字保持一致

@@ -5,8 +5,10 @@ import {
   renderWithQiankun,
   qiankunWindow,
 } from "vite-plugin-qiankun/dist/helper";
+// import App from "./App";
 import App from "./Routers";
 import "./index.less";
+
 let root;
 function render(props) {
   const container = props?.container
@@ -14,7 +16,6 @@ function render(props) {
     : document.getElementById("react-vite");
   root = createRoot(container);
   const basename = props?.base || "/";
-  console.log(basename);
   root.render(
     <BrowserRouter basename={basename}>
       <App />
